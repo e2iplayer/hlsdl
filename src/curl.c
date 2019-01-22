@@ -149,7 +149,8 @@ long get_data_from_url_with_session(void **ptr_session, char *url, char **out, s
     long http_code = 0;
     char *e_url = NULL;
 
-    url[strcspn(url, "\r")] = '\0';
+    if (strcspn(url, "\r") != strlen(url))
+        url[strcspn(url, "\r")] = '\0';
 
     struct MemoryStruct chunk;
 
